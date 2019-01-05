@@ -16,13 +16,12 @@ Do think through the performance/maintainability implications of the choices you
 1. DONE pull the file
 2. DONE get the file open with kotlin
 3. parse the string
-4. create dictionary with date as key
-4a. create dictionary with page as key
-4b. create dictionary with userid as key
-5. create dummy log for testing
-6. write error checks
-6a. total line count should match pages by num users sum
-7. Document code using KDoc syntax
+4. create data class for hits
+5. produce output metrics
+6. create dummy log for testing
+7. write error checks
+7a. total line count should match pages by num users sum
+8. Document code using KDoc syntax
 
 **** ASSUMPTIONS TO STATE ****
 1. The dates in the log are sequential

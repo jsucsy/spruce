@@ -1,7 +1,7 @@
 Help:   kotlinc -help
 
 
-Compile - runnable: kotlinc hello.kt -include-runtime -d hello.jar
+Compile - runnable: kotlinc PageRank.kt -include-runtime -d PageRank.jar
 Compile - library: kotlinc hello.kt -d hello.jar
 
 

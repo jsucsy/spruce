@@ -1,12 +1,24 @@
+/** TODO: package declaration
+ *  TODO: 
+ *
+ */
+
+
 import java.io.File
 
-/** Next step: work out the line parser - return array of values
- *
- *fun lineParse(line: String): Array<String> {
- * return 
- *}
-*/
+data class Hit(val path: String, val user: String, val timestamp: String) { 
+}
+
+fun lineParse(line: String): List<String> {
+  val fields = line.split(",")
+  return fields
+}
+
 
 fun main(args: Array<String>) {
-  File("log.csv").forEachLine { println(it) }
+  //val hitlist: MutableList
+  File("log.csv").forEachLine { 
+    val parsedLine = lineParse(it)
+    println(parsedLine)
+  }
 }

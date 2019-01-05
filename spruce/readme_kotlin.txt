@@ -7,3 +7,4 @@ Compile - library: kotlinc hello.kt -d hello.jar
 
 Run: java -jar hello.jar
 
+REPL: kotlinc-jvm

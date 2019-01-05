@@ -26,9 +26,18 @@ fun lineParse(line: String): Hit {
     return hit
 }
 
+fun calcMetrics(hits: List<Hit>) {
+    // produce by-day rankings of:
+    // - pages by number of users
+    // - users by unique page views
+    val byPath: Grouping<Hit, String> = hits.groupingBy { it.path }
+    println(byPath.eachCount())
+}
+
 fun main(args: Array<String>) {
     val logfile = "log.csv"
     val lines = openLog(logfile)
     val hits = lines.map { lineParse(it) }
-    println(hits)
+    // println(hits)
+    calcMetrics(hits)
 }

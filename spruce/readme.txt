@@ -24,5 +24,6 @@ Do think through the performance/maintainability implications of the choices you
 8. Document code using KDoc syntax
 
 **** ASSUMPTIONS TO STATE ****
-1. The dates in the log are sequential
-
+* The dates in the log are sequential
+* I'm simply printing my output.  In a production run, I would either consume the results with another script or add a database connection directly.
+* File size is not a significant fraction of available memory.  I would likely split the logs if this was a production issue.

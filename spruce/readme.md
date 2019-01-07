@@ -1,7 +1,7 @@
-* Project Status
+# Project Status
 This project currently returns an incorrect metric and needs to be fixed.  It is not yet ready for production.  The "users by unique page views" metric displays by total views, not unique views.  Also, functionality testing needs to be expanded and automated into the build process.
 
-* File list:
+# File list:
 - buildpr.sh:     bash script to check code syntax and compile binary
 - PageRank.jar    compiled binary
 - PageRank.kt     source code
@@ -9,11 +9,11 @@ This project currently returns an incorrect metric and needs to be fixed.  It is
 - log.csv         original (provided) HTTP log
 - log_test.csv    log with dummy values for testing - rename to log.csv to test
 
-* STATED ASSUMPTIONS 
+# STATED ASSUMPTIONS 
 - I'm simply printing my output.  In a production run, I would either consume the results with another script or add a database connection directly.
 - File size is not a significant fraction of available memory.  I would likely split the logs if this was a production issue.
 
-* Project Definition
+# Project Definition
 "Treat it as production level code, upload to Github when complete, include a brief README, and ping me.
 
 Please complete the below problem for an arbitrary production HTTP server's log.  The only restriction is that you use Kotlin as your language of choice.
@@ -27,7 +27,7 @@ produce by-day rankings of:
 
 Do think through the performance/maintainability implications of the choices you're making."
 
-* PROJECT PLAN
+# PROJECT PLAN
 1.  DONE pull the file
 2.  DONE get the file open with kotlin
 3.  DONE parse the string

@@ -3,7 +3,12 @@ import java.io.File
 import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
 
-data class Hit(val path: String, val user: String, val timestamp: ZonedDateTime)
+data class Hit(
+    val path: String,
+    val user: String,
+    val timestamp: ZonedDateTime,
+    val date: ZonedDateTime
+)
 
 fun openLog(logfile: String): List<String> {
     // read file, run error checks, and drop header
@@ -25,22 +30,29 @@ fun openLog(logfile: String): List<String> {
 fun lineParse(line: String): Hit {
     val fields = line.split(",")
     val ts = ZonedDateTime.parse(fields[2])
-    val hit = Hit(fields[0], fields[1], ts)
+    val date = ts.truncatedTo(ChronoUnit.DAYS)
+    val hit = Hit(fields[0], fields[1], ts, date)
     return hit
 }
 
-fun calcMetrics(hits: List<Hit>) {
+fun calcMetrics(hitList: List<Hit>) {
     // produce by-day rankings of:
     // - pages by number of users
     // - users by unique page views
-
-    val groupByDate = hits.groupBy { it -> it.timestamp.truncatedTo(ChronoUnit.DAYS) }
-        // .groupingBy { it.timestamp.truncatedTo(ChronoUnit.DAYS) }
-    groupByDate.forEach { println(it) }
-    
-    // TODO: map/filter/reduce groupByDate to pages by users and users by unique views 
-    // val pagesByUsers = groupByDate.mapValues { (path, user) -> user.count() { it } }
-    // pagesByUsers.forEach { println(it) }
+    val groupHitsByDate = hitList.groupBy { it -> it.date }
+    val hitCountMap = hitList.groupingBy { it.user }.eachCount()
+    val dateKeys = groupHitsByDate.keys
+    for (key in dateKeys) {
+        println("Rankings for $key")
+        val userByViews = hitList
+            .filter { it.date == key }
+            .groupingBy { it.user }.eachCount()
+        val pagesByUsers = hitList
+            .filter { it.date == key }
+            .groupingBy { it.path }.eachCount()
+        println(userByViews)
+        println(pagesByUsers)
+    }
 }
 
 fun main(args: Array<String>) {

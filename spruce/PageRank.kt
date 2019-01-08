@@ -56,7 +56,7 @@ fun lineParse(line: String): Hit {
  * Calculate and print metrics of HTTP log
  * produce by-day rankings of:
  * - pages by number of users: counts total hits for each page regardless of duplicates hits by user
- * - users by unique page views: ERROR:: should count unique views, currently counts duplicates
+ * - users by unique page views: counts unique views by user
  * @param hitList: HTTP log in List<Hit> format
  * @return currently returns nothing, all output is printed directly
  * A full production implementation would account for the intended use of this data
@@ -69,11 +69,13 @@ fun calcMetrics(hitList: List<Hit>) {
         val pagesByUsers = hitList
             .filter { it.date == key }
             .groupingBy { it.path }.eachCount()
+        // for (pg in pagesByUsers) { println(pg) }
+        pagesByUsers.forEach { println(it) }
         val userByViews = hitList
             .filter { it.date == key }
-            .groupingBy { it.user }.eachCount()
-        for (pg in pagesByUsers) { println(pg) }
-        for (us in userByViews) { println(us) }
+            .groupBy { it.user }
+        val countUniqueHitMap = userByViews.mapValues { (k, v) -> v.groupBy { it.path }.count() }
+        countUniqueHitMap.forEach { println(it) }
         println()
     }
 }

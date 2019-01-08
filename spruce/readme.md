@@ -1,5 +1,5 @@
 # Project Status
-This project currently returns an incorrect metric and needs to be fixed.  It is not yet ready for production.  The "users by unique page views" metric displays by total views, not unique views.  Also, functionality testing needs to be expanded and automated into the build process.
+The "users by unique page views" metric is now correct and displays unique views as requested.  "Pages by number of users" is also correct and displays total number of hits per page.  This project should now be tested against production or production-like data, as well as stress-tested against future load expectactions.  All potential issues or errors uncovered should have a test written and automated into the build process.
 
 # File list:
 - buildpr.sh:     bash script to check code syntax and compile binary
@@ -32,7 +32,7 @@ Do think through the performance/maintainability implications of the choices you
 2.  DONE get the file open with kotlin
 3.  DONE parse the string
 4.  DONE create data class for hits
-5.  WIP W/ERRORS produce output metrics
+5.  DONE produce output metrics
 6.  DONE create dummy log for testing
 7.  DONE write error checks
 8.  DONE Document code using KDoc syntax
